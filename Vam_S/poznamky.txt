@@ -1,0 +1,13 @@
+window.isOpen()	            check if window is still running
+window.close()	            close the window
+window.clear()	            clear screen before drawing
+window.display()	        show everything drawn
+window.pollEvent()          reads user/window events
+sf::RectangleShape	        squares/rectangles
+sf::CircleShape	            circles
+sf::Sprite	                images
+sf::Keyboard::W
+sf::Keyboard::A
+sf::Keyboard::S
+sf::Keyboard::D
+sf::Keyboard::Space
