@@ -1,13 +1,42 @@
-window.isOpen()	            check if window is still running
-window.close()	            close the window
-window.clear()	            clear screen before drawing
-window.display()	        show everything drawn
-window.pollEvent()          reads user/window events
-sf::RectangleShape	        squares/rectangles
-sf::CircleShape	            circles
-sf::Sprite	                images
-sf::Keyboard::W
-sf::Keyboard::A
-sf::Keyboard::S
-sf::Keyboard::D
-sf::Keyboard::Space
+| Function / Class                 | Description                              | Arguments                                                        |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------------------------------- |
+| `window.isOpen()`                | Check if window is still running         | none                                                             |
+| `window.close()`                 | Close the window                         | none                                                             |
+| `window.clear()`                 | Clear screen before drawing              | optional: `sf::Color`                                            |
+| `window.display()`               | Show everything drawn on screen          | none                                                             |
+| `window.pollEvent()`             | Reads user/window events                 | `sf::Event& event`                                               |
+| `sf::RectangleShape`             | Create rectangles or bars                | `sf::Vector2f size`                                              |
+| `sf::CircleShape`                | Create circles                           | `float radius`                                                   |
+| `sf::Sprite`                     | Draw images/textures                     | none (use `setTexture`)                                          |
+| `sf::Texture`                    | Holds an image for a sprite              | loadFromFile(string filename)                                    |
+| `shape.setPosition()`            | Set object position                      | `sf::Vector2f(x, y)`                                             |
+| `shape.move()`                   | Move object relative to current position | `dx, dy` (float)                                                 |
+| `shape.setFillColor()`           | Set object color                         | `sf::Color(r,g,b)` or `sf::Color::Green`                         |
+| `shape.setRotation()`            | Rotate object                            | angle in degrees                                                 |
+| `shape.setSize()`                | Set rectangle size                       | `sf::Vector2f(width, height)`                                    |
+| `window.draw()`                  | Draw any drawable object                 | drawable (`sf::CircleShape`, `sf::RectangleShape`, `sf::Sprite`) |
+| `sf::Keyboard::isKeyPressed()`   | Check if a key is pressed                | `sf::Keyboard::Key` (`W`, `A`, `S`, `D`, `Space`, etc.)          |
+| `sf::Clock`                      | Measures time                            | none                                                             |
+| `clock.restart()`                | Get time since last restart and reset    | returns `sf::Time`                                               |
+| `sf::Time.asSeconds()`           | Convert `sf::Time` to seconds            | none                                                             |
+| `sf::Mouse::getPosition(window)` | Get mouse position relative to window    | `sf::RenderWindow& window`                                       |
+
+| Object / Class / Function          | Description                          | Arguments                                                    |
+| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| `sf::RectangleShape`               | Rectangles, bars, or projectiles     | `sf::Vector2f size`                                          |
+| `sf::CircleShape`                  | Circles, players, enemies, bullets   | `float radius`                                               |
+| `sf::ConvexShape`                  | Polygons with custom points          | `.setPointCount(size_t)`, `.setPoint(index, sf::Vector2f)`   |
+| `sf::Sprite`                       | Display images                       | none (use `.setTexture(texture)`)                            |
+| `sf::Texture`                      | Stores image data                    | `.loadFromFile(string filename)`                             |
+| `sf::Vertex`                       | Single point in space                | `sf::Vector2f position`, optional `sf::Color color`          |
+| `sf::VertexArray`                  | Array of vertices for lines/polygons | `sf::PrimitiveType type`, `size_t vertexCount`               |
+| `sf::Font`                         | Stores a font                        | `.loadFromFile(string filename)`                             |
+| `sf::Text`                         | Draw text                            | `string text`, `sf::Font font`, `unsigned int characterSize` |
+| `sf::Shape::setPosition()`         | Move object                          | `sf::Vector2f(x, y)`                                         |
+| `sf::Shape::move()`                | Move relative                        | `float dx, float dy`                                         |
+| `sf::Shape::setRotation()`         | Rotate object                        | `float angle` (degrees)                                      |
+| `sf::Shape::setFillColor()`        | Set color                            | `sf::Color color`                                            |
+| `sf::Shape::setOutlineColor()`     | Set border color                     | `sf::Color color`                                            |
+| `sf::Shape::setOutlineThickness()` | Set border thickness                 | `float thickness`                                            |
+| `sf::RectangleShape::setSize()`    | Change rectangle size                | `sf::Vector2f(width, height)`                                |
+| `window.draw()`                    | Draw object                          | `sf::Drawable& object` (shape, sprite, text, etc.)           |

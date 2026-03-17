@@ -1,18 +1,29 @@
 #include "Entities.h"
 #include "Player.h"
 #include "Enemies.h"
-#include <SFML/Graphics.hpp>
+#include "Projectile.h"
 #include <vector>
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Demo");
+    window.setFramerateLimit(60);
     Player player;
-    while(window.isOpen()){
+    sf::Event event;
+    sf::Clock clock;
+    while (window.isOpen()) {
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+        float dt = clock.restart().asSeconds();
         window.clear();
-
+        player.draw(window);
+        player.update(dt, window);
         window.display();
+
+
     }
-    window.close();
     return 0;
 }
