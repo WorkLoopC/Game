@@ -4,15 +4,16 @@
 #include <SFML/Graphics.hpp>
 class Player : public Entities {
 private:
-    sf::CircleShape circle;
-    float speed{ 1000 };
+    sf::CircleShape m_circle;
+    float m_speed{};
 
 public:
     Player();
-    float getSpeed() const { return speed; };
-    std::vector<Projectile> new_projectile;
-    std::vector<float> angle;
+    float getSpeed() const { return m_speed; };
     void update(float dt, sf::RenderWindow& window);
     void shoot_mouse(float dt, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    
+    std::vector<Projectile> m_new_projectile;
+    std::vector<float> m_angle;
 };

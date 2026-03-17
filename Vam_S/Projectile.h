@@ -3,12 +3,13 @@
 #include <SFML/Window/Keyboard.hpp>
 class Projectile {
 private:
-    float speed{ 1000.f };
+    float m_speed{};
 
 public:
     Projectile(sf::Vector2f position, std::vector<float> direction);
-    sf::RectangleShape rect;
+    float getSpeed() const {return m_speed;};
     void draw(sf::RenderWindow& window);
     void update(float angle);
-
+    
+    sf::RectangleShape m_rect;
 };

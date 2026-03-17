@@ -40,3 +40,8 @@
 | `sf::Shape::setOutlineThickness()` | Set border thickness                 | `float thickness`                                            |
 | `sf::RectangleShape::setSize()`    | Change rectangle size                | `sf::Vector2f(width, height)`                                |
 | `window.draw()`                    | Draw object                          | `sf::Drawable& object` (shape, sprite, text, etc.)           |
+
+
+direction = mousePos - rectPos;                                           this is arrow
+float length = sqrt(direction.x*direction.x + direction.y*direction.y);   this is length of arrow. F.E for collision =  if (length < someThreshold) destroyBullet();
+    
