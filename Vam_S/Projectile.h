@@ -5,11 +5,11 @@ class Projectile {
 private:
     float m_speed{};
 
-public:
+    public:
+    sf::RectangleShape m_rect;
     Projectile(sf::Vector2f position, std::vector<float> direction);
     float getSpeed() const { return m_speed; };
     void draw(sf::RenderWindow& window);
     void update(float angle);
 
-    sf::RectangleShape m_rect;
 };

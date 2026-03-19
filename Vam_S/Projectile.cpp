@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Keyboard.hpp>
 Player player;
+
 Projectile::Projectile(sf::Vector2f position, std::vector<float> direction) {
     m_rect.setFillColor(sf::Color::Yellow);
     m_rect.setSize(sf::Vector2f(15.f, 5.f));
