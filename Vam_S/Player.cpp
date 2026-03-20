@@ -7,19 +7,19 @@
 
 sf::View view;
 sf::Clock cl;
-    
+
 Player::Player() {
     if (!m_playerCharacter.loadFromFile("player.png")) std::cout << "FAILED TO LOAD\n";
     m_playerCharacter.loadFromFile("player.png");
     m_rect.setTexture(&m_playerCharacter);
-    m_rect.setSize(sf::Vector2f(300.f,350.f));
-    m_rect.setPosition(375.f, 275.f);
+    m_rect.setSize(sf::Vector2f(150.f, 200.f));
+    m_rect.setPosition(400.f, 300.f);
     m_speed = 300;
 }
 
 void Player::update(float dt, sf::RenderWindow& window) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        m_rect.move(0, -getSpeed() * dt);       
+        m_rect.move(0, -getSpeed() * dt);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_rect.move(0, getSpeed() * dt);
@@ -33,7 +33,7 @@ void Player::update(float dt, sf::RenderWindow& window) {
 }
 
 void Player::shoot_mouse(float dt, sf::RenderWindow& window) {
-    
+
     Projectile projectile{ m_rect.getPosition() , m_angle };
 
     sf::Vector2f targetPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
@@ -41,7 +41,7 @@ void Player::shoot_mouse(float dt, sf::RenderWindow& window) {
     sf::Vector2f direction = targetPos - m_rect.getPosition();
 
     projectile.m_rect.setOrigin(projectile.m_rect.getSize().x / 2.f, projectile.m_rect.getSize().y / 2.f);
-    
+
     float angle_rotation = std::atan2(direction.y, direction.x) * 180 / M_PI;
 
     projectile.m_rect.setRotation(angle_rotation);
@@ -50,7 +50,7 @@ void Player::shoot_mouse(float dt, sf::RenderWindow& window) {
     m_angle.push_back(atan2(direction.y, direction.x));
     m_new_projectile.push_back(projectile);
     cl.restart();
-    
+
 }
 
 void Player::draw(sf::RenderWindow& window) {
