@@ -1,13 +1,13 @@
 #include "Animation.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime) {
+
+Animation::Animation(sf::Vector2u imageCount, float switchTime) {
     m_imageCount = imageCount;
     m_switchTime = switchTime;
     m_totalTime = 0.f;
     m_currentPic.x = 0;
-    Rect.width = texture->getSize().x / float(imageCount.x);
-    Rect.height = texture->getSize().y / float(imageCount.y);
+
 }
 
 void Animation::update(int row, float dt) {
@@ -22,4 +22,9 @@ void Animation::update(int row, float dt) {
     }
     Rect.left = m_currentPic.x * Rect.width;
     Rect.top = m_currentPic.y * Rect.height;
+}
+
+void Animation::setTextureSize(sf::Vector2u textureSize) {
+    Rect.width = textureSize.x / float(m_imageCount.x); //tady mozna potreba pouzit imageCOunt
+    Rect.height = textureSize.y / float(m_imageCount.y);
 }

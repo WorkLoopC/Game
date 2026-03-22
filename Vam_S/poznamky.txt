@@ -1,0 +1,157 @@
+| Function / Class                 | Description                              | Arguments                                                        |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------------------------------- |
+| `window.isOpen()`                | Check if window is still running         | none                                                             |
+| `window.close()`                 | Close the window                         | none                                                             |
+| `window.clear()`                 | Clear screen before drawing              | optional: `sf::Color`                                            |
+| `window.display()`               | Show everything drawn on screen          | none                                                             |
+| `window.pollEvent()`             | Reads user/window events                 | `sf::Event& event`                                               |
+| `sf::RectangleShape`             | Create rectangles or bars                | `sf::Vector2f size`                                              |
+| `sf::CircleShape`                | Create circles                           | `float radius`                                                   |
+| `sf::Sprite`                     | Draw images/textures                     | none (use `setTexture`)                                          |
+| `sf::Texture`                    | Holds an image for a sprite              | loadFromFile(string filename)                                    |
+| `shape.setPosition()`            | Set object position                      | `sf::Vector2f(x, y)`                                             |
+| `shape.move()`                   | Move object relative to current position | `dx, dy` (float)                                                 |
+| `shape.setFillColor()`           | Set object color                         | `sf::Color(r,g,b)` or `sf::Color::Green`                         |
+| `shape.setRotation()`            | Rotate object                            | angle in degrees                                                 |
+| `shape.setSize()`                | Set rectangle size                       | `sf::Vector2f(width, height)`                                    |
+| `window.draw()`                  | Draw any drawable object                 | drawable (`sf::CircleShape`, `sf::RectangleShape`, `sf::Sprite`) |
+| `sf::Keyboard::isKeyPressed()`   | Check if a key is pressed                | `sf::Keyboard::Key` (`W`, `A`, `S`, `D`, `Space`, etc.)          |
+| `sf::Clock`                      | Measures time                            | none                                                             |
+| `clock.restart()`                | Get time since last restart and reset    | returns `sf::Time`                                               |
+| `sf::Time.asSeconds()`           | Convert `sf::Time` to seconds            | none                                                             |
+| `sf::Mouse::getPosition(window)` | Get mouse position relative to window    | `sf::RenderWindow& window`                                       |
+
+| Object / Class / Function          | Description                          | Arguments                                                    |
+| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| `sf::RectangleShape`               | Rectangles, bars, or projectiles     | `sf::Vector2f size`                                          |
+| `sf::CircleShape`                  | Circles, players, enemies, bullets   | `float radius`                                               |
+| `sf::ConvexShape`                  | Polygons with custom points          | `.setPointCount(size_t)`, `.setPoint(index, sf::Vector2f)`   |
+| `sf::Sprite`                       | Display images                       | none (use `.setTexture(texture)`)                            |
+| `sf::Texture`                      | Stores image data                    | `.loadFromFile(string filename)`                             |
+| `sf::Vertex`                       | Single point in space                | `sf::Vector2f position`, optional `sf::Color color`          |
+| `sf::VertexArray`                  | Array of vertices for lines/polygons | `sf::PrimitiveType type`, `size_t vertexCount`               |
+| `sf::Font`                         | Stores a font                        | `.loadFromFile(string filename)`                             |
+| `sf::Text`                         | Draw text                            | `string text`, `sf::Font font`, `unsigned int characterSize` |
+| `sf::Shape::setPosition()`         | Move object                          | `sf::Vector2f(x, y)`                                         |
+| `sf::Shape::move()`                | Move relative                        | `float dx, float dy`                                         |
+| `sf::Shape::setRotation()`         | Rotate object                        | `float angle` (degrees)                                      |
+| `sf::Shape::setFillColor()`        | Set color                            | `sf::Color color`                                            |
+| `sf::Shape::setOutlineColor()`     | Set border color                     | `sf::Color color`                                            |
+| `sf::Shape::setOutlineThickness()` | Set border thickness                 | `float thickness`                                            |
+| `sf::RectangleShape::setSize()`    | Change rectangle size                | `sf::Vector2f(width, height)`                                |
+| `window.draw()`                    | Draw object                          | `sf::Drawable& object` (shape, sprite, text, etc.)           |
+
+
+direction = mousePos - rectPos;                                           this is arrow
+float length = sqrt(direction.x*direction.x + direction.y*direction.y);   this is length of arrow. F.E for collision =  if (length < someThreshold) destroyBullet();
+
+
+
+
+
+
+
+A Makefile is a build configuration file used by the make tool. It defines targets, their dependencies, and commands to build them. It allows you to automate compilation and ensures that only files that have changed are rebuilt.
+
+
+Every rule looks like this:
+target: dependencies
+    command
+
+target → what you want to build (e.g. executable)
+
+dependencies → files it depends on (e.g. .c, .o)
+
+command → how to build it
+
+Make has built-ins:
+
+$@ → target name
+
+$^ → all dependencies
+
+$< → first dependency
+
+for example %.o: %.h %.cpp
+    $(CXX) $(CXXFLAGS) -c $< is wrong because it targets .h, need to switch with .cpp in this case
+-------------------------------
+
+CXXFLAGS = -Wall -std=c++17:
+-Wall : show warnings
+-std=c++17 : use C++17 standart
+
+TARGET = app
+Output binary, this is the final program name
+
+SRC = $(wildcard *.cpp)
+SRC : file name
+wildcard : built-in Make Function
+It finds all .cpp files in folder
+(result SRC = main.cpp player.cpp enemy.cpp)
+
+OBJ = $(SRC:.cpp=.o)
+this convers .cpp files into .o files
+
+all: $(TARGET)
+Basically means when i run "make", build "app"
+
+$(TARGET): $(OBJ)
+$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ) $(LIBS)
+This is linking, basically puts all .o files and converts them into final executable
+
+%.o: %.cpp
+$(CXX) $(CXXFLAGS) -c $<
+To make any .o file, use its corresponding .cpp
+
+run: $(TARGET)
+./$(TARGET)
+This is shortcut, so "make run"
+
+clean:
+rm -f *.o $(TARGET)
+clean rule
+
+------
+$(SRC)
+Means use value of this variable
+
+"%" wildcard
+For any file like this- example %.o: %.cpp  
+main.o comes from main.cpp
+
+"*" means all
+*.cpp= All cpp files
+
+
+Variables → $(X)
+
+Rules → target: deps
+
+Commands → (tab + shell command)
+
+Patterns → %
+
+Substitution → :.cpp=.o
+
+
+
+
+
+
+1. Composition (Strong "Has-A")
+Concept: Strict ownership. The child object cannot exist without the parent. If the parent is destroyed, the child is destroyed.
+
+2. Aggregation (Weak "Has-A" / "Uses-A")
+Concept: Shared or weak ownership. A class holds another object, but does not own its lifetime. If the parent is destroyed, the child keeps existing.
+
+3. Association ("Knows-A" / "Interacts-With")
+Concept: Two independent objects talk to each other, but neither owns the other. They are peers.
+
+4. Inheritance ("Is-A")
+Concept: One class is a specific, specialized version of a base class. It inherits all the variables and functions of the parent. (for example player is entity)
+
+
+
+
+
+    
